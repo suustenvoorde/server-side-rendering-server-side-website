@@ -1,0 +1,27 @@
+<%- include('partials/head') %>
+
+<h1>Lessons</h1>
+<h2>Own playlists</h2>
+<ul>
+  <% playlists.forEach(playlist => { %>
+    <li><%= playlist.title %></li>
+  <% }) %>
+  <li>Make a playlist!<span>Add your favorite stories in one playlist</span></li>
+</ul>
+
+<h2>All stories</h2>
+<ol>
+  <% stories.forEach(story => { %>
+    <li>
+      <p><%= story.title %></p>
+      <% story.audio.forEach(audio => { %>
+        <audio controls>
+          <source src="https://fdnd-agency.directus.app/assets/<%= audio.audio_file %>" type="audio/mp3" />
+        </audio>
+      <% }) %>
+    </li>
+  <% }) %>
+</ol>
+
+
+<%- include('partials/foot') %>
