@@ -26,7 +26,7 @@ app.get('/', function(request, response) {
 })
 
 app.get('/lessons', function(request, response) {
-  fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=id,title,summary,audio.audio_file,audio.speaker_profile.name').then((stories) => {
+  fetchJson('https://fdnd-agency.directus.app/items/tm_story?fields=*.*.*').then((stories) => {
     response.render('lessons', {playlists: playlistsData.data, stories: stories.data})
   })
 })

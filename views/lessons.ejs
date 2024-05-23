@@ -10,10 +10,19 @@
 </ul>
 
 <h2>All stories</h2>
-<ol>
+<ul>
   <% stories.forEach(story => { %>
     <li>
-      <p><%= story.title %></p>
+      <picture>
+        <source srcset="https://fdnd-agency.directus.app/assets/<%= story.image.id %>?format=avif"
+            type="image/avif">
+        <source srcset="https://fdnd-agency.directus.app/assets/<%= story.image.id %>?format=webp"
+            type="image/webp">
+        <img src="https://fdnd-agency.directus.app/assets/<%= story.image.id %>?fit=cover&width=100&height=100"
+            alt="story" width="100" height="100"
+            onerror="this.onerror=null;this.src='images/sixoclock.png';">
+        </picture>      
+        <p><%= story.title %></p>
       <% story.audio.forEach(audio => { %>
         <audio controls>
           <source src="https://fdnd-agency.directus.app/assets/<%= audio.audio_file %>" type="audio/mp3" />
@@ -21,7 +30,7 @@
       <% }) %>
     </li>
   <% }) %>
-</ol>
+</ul>
 
 
 <%- include('partials/foot') %>
